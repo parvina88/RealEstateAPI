@@ -2,28 +2,27 @@
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-
-        public bool Delete(T entity)
+        public Task<T> GetAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public T Get(Guid id)
+        public Task<IEnumerable<T>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll()
+        public Task<T> CreateAsync(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public T Insert(T entity)
+        public Task<bool> DeleteAsync(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(T entity)
+        public Task<bool> UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }
