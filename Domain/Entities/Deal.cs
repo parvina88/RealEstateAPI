@@ -1,0 +1,21 @@
+﻿namespace Domain.Entities
+{
+    public class Deal
+    {
+        public Guid Id { get; set; }
+        public string Number { get; set; }
+        public DateTime Date { get; set; }
+
+        public Customer Customer { get; set; }
+        public Guid CustomerId { get; set; }
+
+        public Apartment Apartment { get; set; }
+        public Guid ApartmentId { get; set; }
+
+        public Employee Employee { get; set; }
+        public Guid EmployeeId { get; set; }
+
+        public Document Document { get; set; }
+        public Guid DocumentId { get; set; }
+    }
+}
