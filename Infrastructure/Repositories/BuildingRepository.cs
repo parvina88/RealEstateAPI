@@ -17,6 +17,7 @@ namespace Infrastructure.Repositories
         public async Task<Building> CreateAsync(Building building, CancellationToken token = default)
         {
             await _context.Buildings.AddAsync(building, token);
+            await _context.SaveChangesAsync(token);
             return building;
         }
 
