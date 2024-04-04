@@ -2,9 +2,8 @@
 
 namespace Domain.Entities
 {
-    public class Apartment
+    public class Apartment : BaseEntity
     {
-        public Guid Id { get; set; }
         public int Number { get; set; }
         public decimal PricePerSquare { get; set; }
         public double TotalArea { get; set; }

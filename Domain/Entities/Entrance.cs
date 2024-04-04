@@ -1,8 +1,7 @@
 ﻿namespace Domain.Entities
 {
-    public class Entrance
+    public class Entrance : BaseEntity
     {
-        public Guid Id { get; set; }
         public required string Number { get; set; }
         public int NumberFloor { get; set; }
         public int NumberApartmentPerFloor { get; set; }

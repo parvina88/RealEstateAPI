@@ -1,8 +1,7 @@
 ﻿namespace Domain.Entities
 {
-    public class Deal
+    public class Deal : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }
 
