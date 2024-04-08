@@ -1,11 +1,11 @@
 ﻿namespace Domain.Interfaces.Repositories
 {
-    public interface IBaseRepository<T> where T : class
+    public interface IBaseRepository<TEntity> where TEntity : class
     {
-        Task<T> GetAsync(Guid id, CancellationToken token = default);
-        Task<IEnumerable<T>> GetAllAsync(CancellationToken token = default);
-        Task<T> CreateAsync(T entity, CancellationToken token = default);
-        Task<bool> UpdateAsync(T entity, CancellationToken token = default);
-        Task<bool> DeleteAsync(T entity, CancellationToken token = default);
+        Task<TEntity> GetAsync(Guid id, CancellationToken token = default);
+        Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken token = default);
+        Task<TEntity> CreateAsync(TEntity entity, CancellationToken token = default);
+        Task<bool> UpdateAsync(TEntity entity, CancellationToken token = default);
+        Task<bool> DeleteAsync(TEntity entity, CancellationToken token = default);
     }
 }
