@@ -1,44 +1,45 @@
-﻿using Domain.Interfaces.Repositories;
+﻿using Domain.Entities;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly ApplicationDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
         public BaseRepository(ApplicationDbContext context)
         {
             _context = context;
-            _dbSet = context.Set<T>();
+            _dbSet = context.Set<TEntity>();
         }
 
-        public async Task<T> CreateAsync(T entity, CancellationToken token = default)
+        public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken token = default)
         {
             await _dbSet.AddAsync(entity, token);
             await _context.SaveChangesAsync(token);
             return entity;
         }
 
-        public async Task<bool> DeleteAsync(T entity, CancellationToken token = default)
+        public async Task<bool> DeleteAsync(TEntity entity, CancellationToken token = default)
         {
             _dbSet.Remove(entity);
             return await _context.SaveChangesAsync(token) > 0;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken token = default)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken token = default)
         {
             return await _dbSet.ToListAsync(token);
         }
 
-        public async Task<T> GetAsync(Guid id, CancellationToken token = default)
+        public async Task<TEntity> GetAsync(Guid id, CancellationToken token = default)
         {
             return await _dbSet.FindAsync(id, token);
         }
 
-        public async Task<bool> UpdateAsync(T entity, CancellationToken token = default)
+        public async Task<bool> UpdateAsync(TEntity entity, CancellationToken token = default)
         {
             _dbSet.Update(entity);
             return await _context.SaveChangesAsync(token) > 0;

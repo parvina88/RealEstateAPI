@@ -1,6 +1,8 @@
-﻿namespace Domain.Interfaces.Repositories
+﻿using Domain.Entities;
+
+namespace Domain.Interfaces.Repositories
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         Task<TEntity> GetAsync(Guid id, CancellationToken token = default);
         Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken token = default);
