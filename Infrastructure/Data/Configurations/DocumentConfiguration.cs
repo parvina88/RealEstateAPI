@@ -15,7 +15,7 @@ namespace Infrastructure.Data.Configurations
                 .IsRequired();
 
             builder.Property(d => d.Description)
-                .HasMaxLength(300); // Adjust the maximum length as needed
+                .HasMaxLength(300); 
 
             builder.Property(d => d.Date)
                 .IsRequired();

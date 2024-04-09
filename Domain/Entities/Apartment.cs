@@ -12,8 +12,7 @@ namespace Domain.Entities
         public bool HasBalcon { get; set; }
         public ApartmentStatus Status { get; set; }
         public ApartmentType Type { get; set; }
-        public decimal Cost => PricePerSquare * Convert.ToDecimal(TotalArea);   //compute
-
+        public decimal Cost => PricePerSquare * Convert.ToDecimal(TotalArea);   
         public Entrance Entrance { get; set; }
         public Guid EntranceId { get; set; }
 

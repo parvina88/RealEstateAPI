@@ -9,8 +9,6 @@ namespace Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.HasBaseType<Person>();
-
-
         }
     }
 }
