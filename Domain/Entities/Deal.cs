@@ -14,7 +14,6 @@
         public Employee Employee { get; set; }
         public Guid EmployeeId { get; set; }
 
-        public Document Document { get; set; }
-        public Guid DocumentId { get; set; }
+        public virtual ICollection<DealDocument> DealDocuments { get; set; }
     }
 }

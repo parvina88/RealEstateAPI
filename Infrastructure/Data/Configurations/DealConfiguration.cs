@@ -18,23 +18,18 @@ namespace Infrastructure.Data.Configurations
                 .IsRequired();
 
             builder.HasOne(d => d.Customer)
-                .WithMany()
+                .WithMany(c => c.Deals)
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(d => d.Apartment)
-                .WithMany()
+                .WithMany(a => a.Deals)
                 .HasForeignKey(d => d.ApartmentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(d => d.Employee)
-                .WithMany()
+                .WithMany(e => e.Deals)
                 .HasForeignKey(d => d.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(d => d.Document)
-                .WithMany(dc => dc.)
-                .HasForeignKey(d => d.DocumentId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

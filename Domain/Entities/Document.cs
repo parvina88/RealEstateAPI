@@ -8,7 +8,6 @@ namespace Domain.Entities
         public string Description { get; set; }
         public DocumentType Type { get; set; }
         public DateTime Date { get; set; }
-        public ICollection<Deal> Deals { get; set; }
-
+        public virtual ICollection<DealDocument> DealDocuments { get; set; }
     }
 }

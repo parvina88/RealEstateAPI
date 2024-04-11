@@ -23,6 +23,7 @@ namespace Infrastructure.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Deal> Deals { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<DealDocument> DealDocuments { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
     }
