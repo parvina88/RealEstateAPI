@@ -19,5 +19,7 @@ namespace Domain.Entities
         public Guid EntranceId { get; set; }
 
         public virtual ICollection<Document> Documents { get; set; }
+        public ICollection<Deal> Deals { get; set; }
+
     }
 }

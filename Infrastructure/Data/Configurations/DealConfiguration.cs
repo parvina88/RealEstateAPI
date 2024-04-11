@@ -8,8 +8,6 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Deal> builder)
         {
-            builder.ToTable(nameof(Deal));
-
             builder.HasKey(d => d.Id);
 
             builder.Property(d => d.Number)
@@ -21,19 +19,23 @@ namespace Infrastructure.Data.Configurations
 
             builder.HasOne(d => d.Customer)
                 .WithMany()
-                .HasForeignKey(d => d.CustomerId);
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(d => d.Apartment)
                 .WithMany()
-                .HasForeignKey(d => d.ApartmentId);
+                .HasForeignKey(d => d.ApartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(d => d.Employee)
                 .WithMany()
-                .HasForeignKey(d => d.EmployeeId);
+                .HasForeignKey(d => d.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(d => d.Document)
-                .WithMany()
-                .HasForeignKey(d => d.DocumentId);
+                .WithMany(dc => dc.)
+                .HasForeignKey(d => d.DocumentId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
