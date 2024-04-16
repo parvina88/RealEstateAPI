@@ -14,11 +14,18 @@ namespace Application.Services
 
         public async Task<Building> CreateAsync(Building building, CancellationToken token = default)
         {
+
+
             return await _buildingRepository.CreateAsync(building, token);
         }
 
-        public async Task<bool> DeleteAsync(Building building, CancellationToken token = default)
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken token = default)
         {
+            var building = await _buildingRepository.GetAsync(id);
+
+            if (building == null)
+                return false;
+
             return await _buildingRepository.DeleteAsync(building, token);
         }
 
@@ -34,21 +41,14 @@ namespace Application.Services
 
         public async Task<bool> UpdateAsync(Building building, CancellationToken token = default)
         {
-            var existingBuilding = await GetAsync(building.Id);
+            var buildingExist = await _buildingRepository.GetAsync(building.Id, token);
 
-            if (existingBuilding is null)
+            if (buildingExist == null)
             {
                 return false;
             }
 
-            existingBuilding.Name = building.Name;
-            existingBuilding.Address = building.Address;
-            existingBuilding.CeilingHeight = building.CeilingHeight;
-            existingBuilding.BuildingClass = building.BuildingClass;
-            existingBuilding.EntrancesCount = building.EntrancesCount;
-            existingBuilding.Material = building.Material;
-
-            return await _buildingRepository.UpdateAsync(existingBuilding, token);
+            return await _buildingRepository.UpdateAsync(building, token);
         }
     }
 }

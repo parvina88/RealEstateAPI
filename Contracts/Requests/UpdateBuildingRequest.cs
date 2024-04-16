@@ -1,9 +1,12 @@
 ﻿using Domain.Enum;
+using System.Text.Json.Serialization;
 
 namespace Contracts.Requests
 {
-    public class CreateBuildingRequest
+    public class UpdateBuildingRequest
     {
+        [JsonIgnore]
+        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public int EntrancesCount { get; set; }

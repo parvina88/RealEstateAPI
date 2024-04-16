@@ -10,6 +10,8 @@ namespace Application.Common.Mapping
         public BuildingMapProfile() {
             CreateMap<CreateBuildingRequest, Building>();
             CreateMap<Building, SingleBuildingResponse>();
+            CreateMap<GetAllBuildingsRequest, GetAllBuildingsResponse>();
+            CreateMap<UpdateBuildingRequest, Building>();
         }
     }
 }
