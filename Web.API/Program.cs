@@ -1,10 +1,15 @@
-using Infrastructure;
 using Application;
+using Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add services to the container.
+
+builder.Services
+    .AddAuthentication()
+    .AddBearerToken(IdentityConstants.BearerScheme);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -14,6 +19,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddInfrastructure(config)
     .AddApplication();
+
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 

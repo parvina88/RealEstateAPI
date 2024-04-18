@@ -11,7 +11,6 @@ namespace Web.API.Controllers
     [Route("[controller]")]
     public class BuildingController : ControllerBase
     {
-
         private readonly IBaseService<Building> _buildingService;
         private readonly IMapper _mapper;
 
@@ -24,7 +23,7 @@ namespace Web.API.Controllers
         [HttpPost(ApiEndpoints.Building.Create)]
         public async Task<IActionResult> Create([FromBody] CreateBuildingRequest request, CancellationToken token)
         {
-            var building = _mapper.Map<Building>(request);
+            Building building = _mapper.Map<Building>(request);
 
             var response = await _buildingService.CreateAsync(building, token);
             return CreatedAtAction(nameof(Get), new { id = response.Id }, response);

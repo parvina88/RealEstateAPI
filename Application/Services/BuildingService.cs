@@ -14,8 +14,6 @@ namespace Application.Services
 
         public async Task<Building> CreateAsync(Building building, CancellationToken token = default)
         {
-
-
             return await _buildingRepository.CreateAsync(building, token);
         }
 
