@@ -1,30 +1,24 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-namespace Infrastructure.Data
+
+namespace Infrastructure.Data;
+
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public class ApplicationDbContext : DbContext
+    public DbSet<Building> Buildings { get; set; } = null!;
+    public DbSet<Apartment> Apartments { get; set; } = null!;
+    public DbSet<Entrance> Entrances { get; set; } = null!;
+    public DbSet<Customer> Customers { get; set; } = null!;
+    public DbSet<Deal> Deals { get; set; } = null!;
+    public DbSet<Document> Documents { get; set; } = null!;
+    public DbSet<DealDocument> DealDocuments { get; set; } = null!;
+    public DbSet<Employee> Employees { get; set; } = null!;
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-            base.OnModelCreating(builder);
-        }
-
-        public DbSet<Building> Buildings { get; set; }
-        public DbSet<Apartment> Apartments { get; set; }
-        public DbSet<Entrance> Entrances { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Deal> Deals { get; set; }
-        public DbSet<Document> Documents { get; set; }
-        public DbSet<DealDocument> DealDocuments { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-
+        base.OnModelCreating(modelBuilder);
     }
 }

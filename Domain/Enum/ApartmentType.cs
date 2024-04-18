@@ -1,12 +1,11 @@
-﻿namespace Domain.Enum
+﻿namespace Domain.Enum;
+
+public enum ApartmentType
 {
-    public enum ApartmentType
-    {
-        OneBedroom,
-        TwoBedroom,
-        ThreeBedroom,
-        FourPlusBedroom,
-        PentHouse,
-        Studio
-    }
+    OneBedroom,
+    TwoBedroom,
+    ThreeBedroom,
+    FourPlusBedroom,
+    PentHouse,
+    Studio
 }

@@ -2,13 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Data.Configurations
+namespace Infrastructure.Data.Configurations;
+
+public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 {
-    public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
+    public void Configure(EntityTypeBuilder<Employee> builder)
     {
-        public void Configure(EntityTypeBuilder<Employee> builder)
-        {
-            builder.HasBaseType<Person>();
-        }
+        builder.HasBaseType<Person>();
     }
 }
