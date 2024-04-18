@@ -1,7 +1,6 @@
-﻿namespace Application.Common
+﻿namespace Application.Common;
+
+public interface IApplicationDbInitializer
 {
-    public interface IApplicationDbInitializer
-    {
-        void Initialize();
-    }
+    void Initialize();
 }

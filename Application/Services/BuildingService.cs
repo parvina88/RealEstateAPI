@@ -1,52 +1,44 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
 
-namespace Application.Services
+namespace Application.Services;
+
+public class BuildingService(IBaseRepository<Building> buildingRepository) : IBaseService<Building>
 {
-    public class BuildingService : IBaseService<Building>
+    public async Task<Building> CreateAsync(Building building, CancellationToken token = default)
     {
-        private readonly IBaseRepository<Building> _buildingRepository;
+        return await buildingRepository.CreateAsync(building, token);
+    }
 
-        public BuildingService(IBaseRepository<Building> buildingRepository)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken token = default)
+    {
+        var building = await buildingRepository.GetAsync(id, token);
+
+        if (building == null)
+            return false;
+
+        return await buildingRepository.DeleteAsync(building, token);
+    }
+
+    public async Task<IEnumerable<Building>> GetAllAsync(CancellationToken token = default)
+    {
+        return await buildingRepository.GetAllAsync(token);
+    }
+
+    public async Task<Building> GetAsync(Guid id, CancellationToken token = default)
+    {
+        return await buildingRepository.GetAsync(id, token);
+    }
+
+    public async Task<bool> UpdateAsync(Building building, CancellationToken token = default)
+    {
+        var buildingExist = await buildingRepository.GetAsync(building.Id, token);
+
+        if (buildingExist == null)
         {
-            _buildingRepository = buildingRepository;
+            return false;
         }
 
-        public async Task<Building> CreateAsync(Building building, CancellationToken token = default)
-        {
-            return await _buildingRepository.CreateAsync(building, token);
-        }
-
-        public async Task<bool> DeleteAsync(Guid id, CancellationToken token = default)
-        {
-            var building = await _buildingRepository.GetAsync(id);
-
-            if (building == null)
-                return false;
-
-            return await _buildingRepository.DeleteAsync(building, token);
-        }
-
-        public async Task<IEnumerable<Building>> GetAllAsync(CancellationToken token = default)
-        {
-            return await _buildingRepository.GetAllAsync(token);
-        }
-
-        public async Task<Building> GetAsync(Guid id, CancellationToken token = default)
-        {
-            return await _buildingRepository.GetAsync(id, token);
-        }
-
-        public async Task<bool> UpdateAsync(Building building, CancellationToken token = default)
-        {
-            var buildingExist = await _buildingRepository.GetAsync(building.Id, token);
-
-            if (buildingExist == null)
-            {
-                return false;
-            }
-
-            return await _buildingRepository.UpdateAsync(building, token);
-        }
+        return await buildingRepository.UpdateAsync(building, token);
     }
 }

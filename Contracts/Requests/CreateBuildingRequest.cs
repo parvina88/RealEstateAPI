@@ -1,16 +1,15 @@
 ﻿using Domain.Enum;
 
-namespace Contracts.Requests
+namespace Contracts.Requests;
+
+public record class CreateBuildingRequest
 {
-    public record CreateBuildingRequest //DTO 
-    {
-        public string Name { get; set; } = string.Empty;
-        public string Address { get; set; } = string.Empty;
-        public int EntrancesCount { get; set; }
-        public double CeilingHeight { get; set; }
-        public bool RestSector { get; set; }
-        public bool HasLift { get; set; }
-        public BuildingMaterial Material { get; set; }
-        public BuildingClass BuildingClass { get; set; }
-    }
+    public string? Name { get; init; }
+    public string? Address { get; init; }
+    public int EntrancesCount { get; init; }
+    public double CeilingHeight { get; init; }
+    public bool RestSector { get; init; }
+    public bool HasLift { get; init; }
+    public BuildingMaterial Material { get; init; }
+    public BuildingClass BuildingClass { get; init; }
 }

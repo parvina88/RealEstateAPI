@@ -1,7 +1,6 @@
-﻿namespace Contracts.Responses
+﻿namespace Contracts.Responses;
+
+public record class GetAllBuildingsResponse
 {
-    public class GetAllBuildingsResponse
-    {
-        public IEnumerable<SingleBuildingResponse> Items { get; set; } = Enumerable.Empty<SingleBuildingResponse>();
-    }
+    public IEnumerable<SingleBuildingResponse> Items { get; init; } = Enumerable.Empty<SingleBuildingResponse>();
 }

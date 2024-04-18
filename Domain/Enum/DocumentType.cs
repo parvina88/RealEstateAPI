@@ -1,9 +1,8 @@
-﻿namespace Domain.Enum
+﻿namespace Domain.Enum;
+
+public enum DocumentType
 {
-    public enum DocumentType
-    {
-        Passport,
-        INN,
-        SIN
-    }
+    Passport,
+    Inn,
+    Sin
 }

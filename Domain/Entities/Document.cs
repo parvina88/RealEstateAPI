@@ -1,13 +1,12 @@
 ﻿using Domain.Enum;
 
-namespace Domain.Entities
+namespace Domain.Entities;
+
+public class Document : BaseEntity
 {
-    public class Document : BaseEntity
-    {
-        public string Number { get; set; }
-        public string Description { get; set; }
-        public DocumentType Type { get; set; }
-        public DateTime Date { get; set; }
-        public virtual ICollection<DealDocument> DealDocuments { get; set; }
-    }
+    public string Number { get; set; }
+    public string Description { get; set; }
+    public DocumentType Type { get; set; }
+    public DateTime Date { get; set; }
+    public virtual ICollection<DealDocument> DealDocuments { get; set; }
 }
