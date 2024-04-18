@@ -1,10 +1,9 @@
-﻿namespace Domain.Enum
+﻿namespace Domain.Enum;
+
+public enum BuildingClass
 {
-    public enum BuildingClass
-    {
-        Economy,
-        Comfort,
-        Premium,
-        Business
-    }
+    Economy,
+    Comfort,
+    Premium,
+    Business
 }

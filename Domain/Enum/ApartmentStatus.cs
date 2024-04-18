@@ -1,9 +1,8 @@
-﻿namespace Domain.Enum
+﻿namespace Domain.Enum;
+
+public enum ApartmentStatus
 {
-    public enum ApartmentStatus
-    {
-        Available,
-        Reserved,
-        Sold
-    }
+    Available,
+    Reserved,
+    Sold
 }

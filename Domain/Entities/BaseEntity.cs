@@ -1,12 +1,6 @@
-﻿namespace Domain.Entities
-{
-    public abstract class BaseEntity
-    {
-        public BaseEntity()
-        {
-            Id = Guid.NewGuid();
-        }
+﻿namespace Domain.Entities;
 
-        public Guid Id { get; }
-    }
+public abstract class BaseEntity
+{
+    public Guid Id { get; } = Guid.NewGuid();
 }

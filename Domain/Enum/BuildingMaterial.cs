@@ -1,10 +1,9 @@
-﻿namespace Domain.Enum
+﻿namespace Domain.Enum;
+
+public enum BuildingMaterial
 {
-    public enum BuildingMaterial
-    {
-        Monolithic = 1,
-        Brick, 
-        Panel,
-        Block
-    }
+    Monolithic = 1,
+    Brick, 
+    Panel,
+    Block
 }
