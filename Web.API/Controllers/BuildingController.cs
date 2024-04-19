@@ -3,6 +3,7 @@ using AutoMapper;
 using Contracts.Requests;
 using Contracts.Responses;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.API.Controllers
@@ -11,6 +12,7 @@ namespace Web.API.Controllers
     [Route("[controller]")]
     public class BuildingController(IBaseService<Building> buildingService, IMapper mapper) : ControllerBase
     {
+        [Authorize]
         [HttpPost(ApiEndpoints.Building.Create)]
         public async Task<IActionResult> Create([FromBody] CreateBuildingRequest request, CancellationToken token)
         {
