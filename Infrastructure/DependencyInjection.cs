@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces.Repositories;
+﻿using Application.Common;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IApplicationDbInitializer, ApplicationDbInitializer>();
         services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
         services.AddDbContext<ApplicationDbContext>(options =>
