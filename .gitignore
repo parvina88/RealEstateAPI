@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 .idea/
+/Infrastructure/Migrations/20240419042912_ChangedStructure.Designer.cs
