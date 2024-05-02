@@ -1,11 +1,82 @@
 ﻿@page "/buildings"
+@using Contracts.Responses
+@using Contracts.Requests
+@using Domain.Entities
+@using RealEstate.Client.Services.Building
+
+@inject IBuildingService _buildingService
 
 <h3>Buildings</h3>
 
 <div>
     <h1>This is the buildings page</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Адрес</th>
+            <th>Количество подъездов</th>
+            <th>Высота</th>
+            <th></th>
+        </tr></thead>
+        <tbody>
+            @foreach (var building in buildings)
+            {
+                <tr>
+                    <td>@building.Name</td>
+                    <td>@building.Address</td>
+                    <td>@building.EntrancesCount</td>
+                    <td>@building.CeilingHeight</td>
+                    <td>
+                        @* <button @onclick="()=>Edit(building)">Изменить</button>
+                        <button @onclick="@(async ()=> await Delete(building.Id))">Удалить</button> *@
+                        <button>Изменить</button>
+                        <button>Удалить</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 @code {
+    HttpClient httpClient = null!;
+
+    private List<SingleBuildingResponse> buildings = new();
+    private GetAllBuildingsRequest getBuildingsQuery = new();
+    private SingleBuildingResponse? currentBuilding;
+
+    #region Error
+    private string errorMessage;
+    private bool isError;
+    private void ShowError(string error)
+    {
+        errorMessage = error;
+        isError = true;
+    }
+
+    private bool isLoading;
+    #endregion
+
+    private async Task LoadBuildings()
+    {
+        var response = await _buildingService.GetAllAsync(getBuildingsQuery);
+
+        if (response.Success)
+        {
+            buildings = response.Result.Items.ToList();
+        }
+        else
+        {
+            ShowError(response.Error);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        await Task.WhenAll(LoadBuildings());
+        isLoading = false;
+    }
 
 }

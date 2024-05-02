@@ -42,6 +42,16 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "test",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");
+                      });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,6 +62,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("test");
 
 app.UseAuthorization();
 
